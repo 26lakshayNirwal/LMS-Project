@@ -96,7 +96,7 @@ const Home = () => {
 
             {/* LEFT TEXT */}
             <div className="col-lg-6 text-white">
-              <h4 style={{ color: "#c6f36a" }}>India’s Only</h4>
+              <h4 style={{ color: "#c6f36a" }}>India's Only</h4>
 
               <h1 className="fw-bold" style={{ fontSize: "42px" }}>
                 UG Program in Finance and Business that gets you{" "}
@@ -109,7 +109,7 @@ const Home = () => {
                 className="btn mt-4 px-4 rounded-pill"
                 style={{ backgroundColor: "#c6f36a" }}
               >
-                Download Brochure →
+                Download Brochure -
               </button>
 
               <div className="mt-4 d-flex align-items-center">
