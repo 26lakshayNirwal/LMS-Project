@@ -17,8 +17,8 @@
 
 ## 🔗 Live Links
 
-* Frontend: [Your Link]
-* Backend: [Your Link]
+* Frontend: [(https://lms-project-1-ydsh.onrender.com)]
+* Backend: [https://lms-project-tqfi.onrender.com]
 
 ## ⚙️ Setup
 
