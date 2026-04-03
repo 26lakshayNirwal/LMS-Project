@@ -18,18 +18,39 @@ const Dashboard = () => {
 
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("title", file.name);
 
     try {
-      const res = await fetch(`${API_BASE_URL}/api/summarize`, {
+      // Step 1: Upload document to database
+      const uploadRes = await fetch(`${API_BASE_URL}/api/docs/upload`, {
         method: "POST",
         body: formData
       });
 
-      const data = await res.json();
-      setSummary(data.summary);
+      if (!uploadRes.ok) {
+        setSummary("Error uploading document");
+        setLoading(false);
+        return;
+      }
 
-    } catch {
-      setSummary("Error summarizing");
+      const uploadData = await uploadRes.json();
+      console.log("Document uploaded:", uploadData);
+
+      // Step 2: Summarize the document
+      const summarizeFormData = new FormData();
+      summarizeFormData.append("file", file);
+
+      const summarizeRes = await fetch(`${API_BASE_URL}/api/summarize`, {
+        method: "POST",
+        body: summarizeFormData
+      });
+
+      const summaryData = await summarizeRes.json();
+      setSummary(summaryData.summary);
+
+    } catch (error) {
+      console.error("Error:", error);
+      setSummary("Error processing document");
     }
 
     setLoading(false);
