@@ -10,6 +10,12 @@ router.post("/register", async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        error: "name, email, and password are required",
+      });
+    }
+
     const hash = await bcrypt.hash(password, 10);
 
     const user = await User.create({
@@ -18,9 +24,12 @@ router.post("/register", async (req, res) => {
       password: hash
     });
 
-    res.json({ msg: "User registered" });
+    res.status(201).json({ msg: "User registered" });
 
   } catch (err) {
+    if (err?.code === 11000) {
+      return res.status(409).json({ error: "Email already registered" });
+    }
     res.status(500).json({ error: "Register failed" });
   }
 });

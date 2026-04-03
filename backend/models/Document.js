@@ -1,8 +1,11 @@
 import mongoose from "mongoose";
 
-const documentSchema = new mongoose.Schema({
-  title: String,
-  fileUrl: String
-});
+const documentSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    fileUrl: { type: String, required: true },
+  },
+  { timestamps: true }
+);
 
 export default mongoose.model("Document", documentSchema);
